@@ -40,14 +40,14 @@
     <script src="/libs/bootstrap.min.js"></script>
     <script src="/libs/qrcode.min.js"></script>
     <div class="row">
-      <div class="title col-md-12 col-lg-12">扫码添加账号<br>定期更换密码</div>
+      <div class="title col-md-12 col-lg-12">Отсканируйте QR-код, чтобы добавить учетную запись<br>Регулярно меняйте свой пароль.</div>
     </div>
     <div class="row">
       <div class="time col-md-12 col-lg-12"></div>
     </div>
     <% if (pay) { %>
     <div class="row">
-      <div class="title col-md-12 col-lg-12"><a href="<%=pay%>">购买付费服务</a></div>
+      <div class="title col-md-12 col-lg-12"><a href="<%=pay%>">Покупка платных услуг</a></div>
     </div>
     <% } %>
     <div class="row">
@@ -83,7 +83,7 @@
             document.getElementById('qrcode').innerHTML = qr.createImgTag(6);
             $('.address').text(window.ssqrcode);
             $('#qrcode').attr('href', window.ssqrcode);
-            $('.time').text('更新时间: ' + (new Date(data.updateTime)).toLocaleString());
+            $('.time').text('Время обновления: ' + (new Date(data.updateTime)).toLocaleString());
           });
         });
       };

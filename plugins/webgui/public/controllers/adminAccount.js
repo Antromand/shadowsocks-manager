@@ -2,7 +2,7 @@ const app = angular.module('app');
 
 app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http', 'accountSortDialog','$timeout', 'adminApi', '$localStorage',
   ($scope, $state, $mdMedia, $http, accountSortDialog, $timeout, adminApi, $localStorage) => {
-    $scope.setTitle('账号');
+    $scope.setTitle('счет');
     $scope.setMenuRightButton('sort_by_alpha');
     $scope.setMenuSearchButton('search');
     if(!$localStorage.admin.accountFilterSettings) {
@@ -443,7 +443,7 @@ app.controller('AdminAccountController', ['$scope', '$state', '$mdMedia', '$http
 ])
 .controller('AdminAddAccountController', ['$scope', '$state', '$http', '$mdBottomSheet', 'alertDialog', '$filter', 'setAccountServerDialog',
   ($scope, $state, $http, $mdBottomSheet, alertDialog, $filter, setAccountServerDialog) => {
-    $scope.setTitle('添加账号');
+    $scope.setTitle('Добавить аккаунт');
     $scope.setMenuButton('arrow_back', 'admin.account');
     $http.get('/api/admin/order').then(success => {
       $scope.orders = success.data.filter(f => !f.baseId);
