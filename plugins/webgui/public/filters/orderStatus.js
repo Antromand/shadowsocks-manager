@@ -3,18 +3,18 @@ const app = angular.module('app');
 app.filter('order', function () {
   return function (status) {
     const result = {
-      CREATE: '创建',
-      WAIT_BUYER_PAY: '等待',
-      TRADE_SUCCESS: '付款',
-      FINISH: '完成',
-      USED: '完成',
-      TRADE_CLOSED: '关闭',
-      created: '创建',
-      approved: '付款',
-      finish: '完成',
-      closed: '关闭',
+      CREATE: 'создавать',
+      WAIT_BUYER_PAY: 'ждать',
+      TRADE_SUCCESS: 'Оплата',
+      FINISH: 'Заканчивать',
+      USED: 'Заканчивать',
+      TRADE_CLOSED: 'закрытие',
+      created: 'создавать',
+      approved: 'Оплата',
+      finish: 'Заканчивать',
+      closed: 'закрытие',
     };
-    return result[status] || '其它';
+    return result[status] || 'другой';
   };
 })
 .filter('prettyOrderId', function () {
@@ -25,14 +25,14 @@ app.filter('order', function () {
   // TODO: 将此处的类型和其他地方的类型代码全部集中到一处
   return function (type) {
     const cardType = {
-      5: '小时',
-      4: '日',
-      2: '周',
-      3: '月',
-      6: '季度',
-      7: '年',
-      8: '两周',
-      9: '半年',
+      5: 'Час',
+      4: 'день',
+      2: 'неделя',
+      3: 'масяц',
+      6: 'Квартал',
+      7: 'Год',
+      8: 'Две недели',
+      9: 'Полгода',
     };
     return cardType[type];
   };

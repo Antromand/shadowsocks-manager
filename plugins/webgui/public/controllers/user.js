@@ -36,26 +36,26 @@ app
       }
     };
     $scope.menus = [{
-      name: '首页',
+      name: 'Главная страница',
       icon: 'home',
       click: 'user.index'
     }, {
-      name: '账号',
+      name: 'Счет',
       icon: 'account_circle',
       click: 'user.account'
     }, {
-      name: '订单',
+      name: 'Заказ',
       icon: 'attach_money',
       click: 'user.order',
       hide: true,
     }, {
-      name: '设置',
+      name: 'Настройки',
       icon: 'settings',
       click: 'user.settings'
     }, {
       name: 'divider',
     }, {
-      name: '退出',
+      name: 'Покинуть',
       icon: 'exit_to_app',
       click: function() {
         $http.post('/api/home/logout').then(() => {
@@ -173,7 +173,7 @@ app
 ])
 .controller('UserIndexController', ['$scope', '$state', 'userApi', 'markdownDialog', '$sessionStorage', 'autopopDialog',
   ($scope, $state, userApi, markdownDialog, $sessionStorage, autopopDialog) => {
-    $scope.setTitle('首页');
+    $scope.setTitle('Главная страница');
     $scope.notices = [];
     $scope.otherNotices = {};
     userApi.getNotice().then(success => {
@@ -222,7 +222,7 @@ app
 ])
 .controller('UserAccountController', ['$scope', '$http', '$mdMedia', 'userApi', '$filter', 'payDialog', 'qrcodeDialog', '$interval', '$localStorage', 'changePasswordDialog', 'payByGiftCardDialog', 'subscribeDialog', '$q', '$state', 'wireGuardConfigDialog',
   ($scope, $http, $mdMedia, userApi, $filter, payDialog, qrcodeDialog, $interval, $localStorage, changePasswordDialog, payByGiftCardDialog, subscribeDialog, $q, $state, wireGuardConfigDialog) => {
-    $scope.setTitle('账号');
+    $scope.setTitle('Счет');
     $scope.setFabButton($scope.config.multiAccount ? () => {
       $scope.createOrder();
     } : null);
@@ -443,7 +443,7 @@ app
       };
     };
     $scope.clipboardSuccess = event => {
-      $scope.toast($filter('translate')('二维码链接已复制到剪贴板'));
+      $scope.toast($filter('translate')('Ссылка на QR-код скопирована в буфер обмена.'));
     };
     $scope.isWG = server => { return (server && server.type === 'WireGuard'); };
     $scope.isSS = server => { return (server && server.type === 'Shadowsocks'); };
@@ -455,7 +455,7 @@ app
 ])
 .controller('UserSettingsController', ['$scope', '$state',
   ($scope, $state) => {
-    $scope.setTitle('设置');
+    $scope.setTitle('Настройки');
     $scope.toPassword = () => {
       $state.go('user.changePassword');
     };
@@ -472,7 +472,7 @@ app
 ])
 .controller('UserChangePasswordController', ['$scope', '$state', 'userApi', 'alertDialog', '$http', '$localStorage',
   ($scope, $state, userApi, alertDialog, $http, $localStorage) => {
-    $scope.setTitle('修改密码');
+    $scope.setTitle('Изменить пароль');
     $scope.setMenuButton('arrow_back', 'user.settings');
     $scope.data = {
       password: '',
@@ -482,7 +482,7 @@ app
     $scope.confirm = () => {
       alertDialog.loading();
       userApi.changePassword($scope.data.password, $scope.data.newPassword).then(success => {
-        alertDialog.show('修改密码成功，请重新登录', '确定')
+        alertDialog.show('Пароль успешно изменен, пожалуйста, войдите снова', 'Конечно')
         .then(() => {
           return $http.post('/api/home/logout');
         }).then(() => {
@@ -491,7 +491,7 @@ app
           $state.go('home.index');
         });
       }).catch(err => {
-        alertDialog.show('修改密码失败', '确定');
+        alertDialog.show('Смена пароля не удалась', 'Конечно');
       });
     };
   }
@@ -520,19 +520,19 @@ app
 ])
 .controller('UserRefController', ['$scope', '$http', '$filter',
   ($scope, $http, $filter) => {
-    $scope.setTitle('邀请码');
+    $scope.setTitle('Код приглашения');
     $scope.setMenuButton('arrow_back', 'user.settings');
     $http.get('/api/user/ref/code').then(success => { $scope.code = success.data; });
     $http.get('/api/user/ref/user').then(success => { $scope.user = success.data; });
     $scope.getRefUrl = code => `${ $scope.config.site }/home/ref/${ code }`;
     $scope.clipboardSuccess = event => {
-      $scope.toast($filter('translate')('邀请链接已复制到剪贴板'));
+      $scope.toast($filter('translate')('Ссылка приглашения скопирована в буфер обмена'));
     };
   }
 ])
 .controller('UserOrderController', ['$scope', '$http',
   ($scope, $http) => {
-    $scope.setTitle('我的订单');
+    $scope.setTitle('Мои заказы');
     $http.get('/api/user/order').then(success => {
       $scope.orders = success.data;
     });
@@ -540,7 +540,7 @@ app
 ])
 .controller('UserMacAddressController', ['$scope', '$state', '$http', 'addMacAccountDialog',
   ($scope, $state, $http, addMacAccountDialog) => {
-    $scope.setTitle('MAC地址');
+    $scope.setTitle('MAC-адрес');
     $scope.setMenuButton('arrow_back', 'user.settings');
     const getMacAccount = () => {
       $http.get('/api/user/account/mac').then(success => {
@@ -570,7 +570,7 @@ app
 ])
 .controller('UserNoticeController', ['$scope', 'userApi', 'markdownDialog',
   ($scope, userApi, markdownDialog) => {
-    $scope.setTitle('公告');
+    $scope.setTitle('объявление');
     $scope.setMenuButton('arrow_back', 'user.index');
     userApi.getNotice().then(success => {
       $scope.notices = success;

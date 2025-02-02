@@ -2,7 +2,7 @@ const app = angular.module('app');
 
 app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'adminApi', '$mdMedia', '$localStorage', 'userSortDialog', '$timeout',
   ($scope, $state, $stateParams, adminApi, $mdMedia, $localStorage, userSortDialog, $timeout) => {
-    $scope.setTitle('用户');
+    $scope.setTitle('пользователь');
     $scope.setMenuSearchButton('search');
     $scope.setFabButton(() => {
       $state.go('admin.addUser');
@@ -121,7 +121,7 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
 ])
 .controller('AdminUserPageController', ['$scope', '$state', '$stateParams', '$http', 'editUserCommentDialog', 'adminApi', 'orderDialog', 'confirmDialog', 'emailDialog', 'addAccountDialog', 'setGroupDialog',
   ($scope, $state, $stateParams, $http, editUserCommentDialog, adminApi, orderDialog, confirmDialog, emailDialog, addAccountDialog, setGroupDialog) => {
-    $scope.setTitle('用户信息');
+    $scope.setTitle('Информация о пользователе');
     $scope.setMenuButton('arrow_back', 'admin.user');
     const userId = $stateParams.userId;
     $scope.user = { username: '...' };
@@ -148,10 +148,10 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
     getUserData();
     $scope.deleteUserAccount = (accountId) => {
       confirmDialog.show({
-        text: '将此账号移除出该用户的列表？',
-        cancel: '取消',
-        confirm: '移除',
-        error: '移除账号失败',
+        text: 'Удалить эту учетную запись из списка этого пользователя?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить аккаунт',
         fn: function () { return $http.delete(`/api/admin/user/${ userId }/${ accountId }`); },
       }).then(() => {
         getUserData();
@@ -161,10 +161,10 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
     };
     $scope.deleteMacAccount = accountId => {
       confirmDialog.show({
-        text: '删除该账号？',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除账号失败',
+        text: 'Удалить этот аккаунт?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить аккаунт.',
         fn: function () { return $http.delete('/api/admin/account/mac/', {
           params: { id: accountId },
         }); },
@@ -194,10 +194,10 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
     };
     $scope.deleteUser = () => {
       confirmDialog.show({
-        text: '真的要删除该用户吗？',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除用户失败',
+        text: 'Вы действительно хотите удалить этого пользователя?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить пользователя',
         fn: function () {
           return $http.delete(`/api/admin/user/${ userId }`);
         },
@@ -225,10 +225,10 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
     };
     $scope.deleteRefUser = refUserId => {
       confirmDialog.show({
-        text: '删除该邀请关系？',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除邀请关系失败',
+        text: 'Удалить это приглашение?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить связь приглашения',
         fn: function () { return $http.delete(`/api/admin/ref/${ userId }/${ refUserId }`); },
       }).then(() => {
         getUserData();
@@ -238,10 +238,10 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
     };
     $scope.deleteRefCode = code => {
       confirmDialog.show({
-        text: '删除该邀请码？\n注意，邀请码对应的邀请关系也会一并删除',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除邀请码失败',
+        text: 'Удалить этот пригласительный код? \nОбратите внимание, что пригласительная связь, соответствующая коду приглашения, также будет удалена.',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить код приглашения',
         fn: function () { return $http.delete(`/api/admin/ref/${ code }`); },
       }).then(() => {
         getUserData();
@@ -258,7 +258,7 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
 ])
 .controller('AdminAddUserController', ['$scope', '$state', '$stateParams', '$http', 'alertDialog',
   ($scope, $state, $stateParams, $http, alertDialog) => {
-    $scope.setTitle('添加用户');
+    $scope.setTitle('Добавление пользователей');
     $scope.setMenuButton('arrow_back', 'admin.user');
     $scope.user = { type: 'normal' };
     $scope.confirm = () => {
@@ -270,10 +270,10 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
       }, {
         timeout: 15000,
       }).then(success => {
-        alertDialog.show('添加用户成功', '确定');
+        alertDialog.show('Пользователь успешно добавлен', 'Конечно');
         $state.go('admin.user');
       }).catch(() => {
-        alertDialog.show('添加用户失败', '确定');
+        alertDialog.show('Не удалось добавить пользователя.', 'Конечно');
       });
     };
     $scope.cancel = () => {
@@ -283,7 +283,7 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
 ])
 .controller('AdminAdminPageController', ['$scope', '$state', '$stateParams', '$http', 'adminApi', 'setGroupDialog', 'confirmDialog',
   ($scope, $state, $stateParams, $http, adminApi, setGroupDialog, confirmDialog) => {
-    $scope.setTitle('管理员信息');
+    $scope.setTitle('Информация администратора');
     $scope.setMenuButton('arrow_back', 'admin.user');
     const userId = $stateParams.userId;
     $scope.user = { username: '...' };
@@ -299,10 +299,10 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
 
     $scope.deleteUser = () => {
       confirmDialog.show({
-        text: '真的要删除该用户吗？',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除用户失败',
+        text: 'Вы действительно хотите удалить этого пользователя?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить пользователя',
         fn: function () {
           return $http.delete(`/api/admin/user/${ userId }`);
         },
@@ -318,7 +318,7 @@ app.controller('AdminUserController', ['$scope', '$state', '$stateParams', 'admi
 
     $http.get('/api/admin/group').then(success => {
       $scope.groups = success.data;
-      $scope.groups.unshift({ id: 0, name: '无分组', comment: '' });
+      $scope.groups.unshift({ id: 0, name: 'Нет группировки', comment: '' });
       $scope.groupInfo = {};
       $scope.groups.forEach(f => {
         $scope.groupInfo[f.id] = { name: f.name, comment: f.comment };

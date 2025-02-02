@@ -6,21 +6,21 @@ app.factory('payDialog' , [ '$mdDialog', '$interval', '$timeout', '$http', '$loc
   const publicInfo = {
     config: configManager.getConfig(),
     time: [{
-      type: 'hour', name: '一小时'
+      type: 'hour', name: 'Один час'
     }, {
-      type: 'day', name: '一天'
+      type: 'day', name: 'Один день'
     }, {
-      type: 'week', name: '一周'
+      type: 'week', name: 'Одна неделя'
     }, {
-      type: 'month', name: '一个月'
+      type: 'month', name: 'Один месяц'
     }, {
-      type: 'season', name: '三个月'
+      type: 'season', name: 'Квартал'
     }, {
-      type: 'year', name: '一年'
+      type: 'year', name: 'Один год'
     }],
     payType: [],
   };
-  if(publicInfo.config.alipay) { publicInfo.payType.push({ type: 'alipay', name: '支付宝' }); }
+  if(publicInfo.config.alipay) { publicInfo.payType.push({ type: 'alipay', name: 'Alipay' }); }
   if(publicInfo.config.paypal) { publicInfo.payType.push({ type: 'paypal', name: 'Paypal' }); }
   if(publicInfo.config.giftcard) { publicInfo.payType.push({ type: 'giftcard', name: '充值码' }); }
   publicInfo.myPayType = publicInfo.payType[0] ? publicInfo.payType[0].type : undefined;
@@ -43,7 +43,7 @@ app.factory('payDialog' , [ '$mdDialog', '$interval', '$timeout', '$http', '$loc
             const orderStatus = success.data.status;
             if(orderStatus === 'TRADE_SUCCESS' || orderStatus === 'FINISH') {
               publicInfo.status = 'success';
-              publicInfo.message = '订单会在两分钟内生效，请稍候';
+              publicInfo.message = 'Приказ вступит в силу в течение двух минут, пожалуйста, подождите';
               interval && $interval.cancel(interval);
             }
           });
@@ -85,7 +85,7 @@ app.factory('payDialog' , [ '$mdDialog', '$interval', '$timeout', '$http', '$loc
           return paypal.request.post(EXECUTE_URL, data)
           .then(function (res) {
             publicInfo.status = 'success';
-            publicInfo.message = '订单会在两分钟内生效，请稍候';
+            publicInfo.message = 'Приказ вступит в силу в течение двух минут, пожалуйста, подождите';
           });
         }
       }, '#paypal-button-container');
@@ -168,7 +168,7 @@ app.factory('payDialog' , [ '$mdDialog', '$interval', '$timeout', '$http', '$loc
       const data = result.data;
       if (data.success) {
         publicInfo.status = 'success';
-        publicInfo.message = `充值码[ ${ publicInfo.giftCardPassword } ]使用成功`;
+        publicInfo.message = `Код пополнения[ ${ publicInfo.giftCardPassword } ]Успешное использование`;
         publicInfo.giftCardPassword = '';
       } else {
         publicInfo.status = 'error';
@@ -176,7 +176,7 @@ app.factory('payDialog' , [ '$mdDialog', '$interval', '$timeout', '$http', '$loc
       }
     }).catch(err => {
       publicInfo.status = 'error';
-      publicInfo.message = '充值出现错误';
+      publicInfo.message = 'Ошибка перезарядки';
     });
   };
   const jumpToPayPage = () => {

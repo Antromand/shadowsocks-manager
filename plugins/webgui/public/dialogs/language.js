@@ -36,10 +36,10 @@ app.factory('languageDialog' , [ '$mdDialog', $mdDialog => {
         $scope.publicInfo.hide();
       };
       $scope.languages = [
-        { id: 'zh-CN', name: '中文' },
+        { id: 'zh-CN', name: 'Китайский' },
         { id: 'en-US', name: 'English' },
-        { id: 'ja-JP', name: '日本語' },
-        { id: 'ko-KR', name: '한국' },
+        { id: 'ja-JP', name: 'Японский' },
+        { id: 'ko-KR', name: 'Корейский' },
         { id: 'ru-RU', name: 'Русский' },
       ];
       $scope.languages.forEach(language => {

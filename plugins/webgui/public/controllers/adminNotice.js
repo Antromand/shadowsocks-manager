@@ -1,7 +1,7 @@
 const app = angular.module('app');
 
 app.controller('AdminNoticeController', ['$scope', '$http', '$state', ($scope, $http, $state) => {
-  $scope.setTitle('公告管理');
+  $scope.setTitle('Управление объявлениями');
   $scope.setMenuButton('arrow_back', function() {
     $state.go('admin.settings');
   });
@@ -16,7 +16,7 @@ app.controller('AdminNoticeController', ['$scope', '$http', '$state', ($scope, $
   };
 }])
 .controller('AdminEditNoticeController', ['$scope', '$http', '$state', '$stateParams', 'markdownDialog', 'setNoticeGroupDialog', 'confirmDialog', ($scope, $http, $state, $stateParams, markdownDialog, setNoticeGroupDialog, confirmDialog) => {
-  $scope.setTitle('编辑公告');
+  $scope.setTitle('Редакционное объявление');
   $scope.setMenuButton('arrow_back', 'admin.notice');
   $http.get('/api/admin/notice/' + $stateParams.noticeId).then(success => {
     $scope.notice = success.data;
@@ -29,10 +29,10 @@ app.controller('AdminNoticeController', ['$scope', '$http', '$state', ($scope, $
   });
   $scope.delete = () => {
     confirmDialog.show({
-      text: '真的要删除公告吗？',
-      cancel: '取消',
-      confirm: '删除',
-      error: '删除公告失败',
+      text: 'Вы действительно хотите удалить объявление?',
+      cancel: 'Отмена',
+      confirm: 'Удалить',
+      error: 'Не удалось удалить объявление.',
       fn: function () { return $http.delete('/api/admin/notice/' + $stateParams.noticeId); },
     }).then(() => {
       $state.go('admin.notice');

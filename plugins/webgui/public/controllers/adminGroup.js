@@ -2,7 +2,7 @@ const app = angular.module('app');
 
 app.controller('AdminGroupSettingController', ['$scope', '$http', '$state',
 ($scope, $http, $state) => {
-  $scope.setTitle('群组管理');
+  $scope.setTitle('Управление группой');
   $scope.setMenuButton('arrow_back', function() {
     $state.go('admin.settings');
   });
@@ -16,7 +16,7 @@ app.controller('AdminGroupSettingController', ['$scope', '$http', '$state',
 }
 ]).controller('AdminAddGroupController', ['$scope', '$q', '$http', '$state', 'alertDialog', 'setGroupNoticeDialog', 'setGroupOrderDialog',
 ($scope, $q, $http, $state, alertDialog, setGroupNoticeDialog, setGroupOrderDialog) => {
-  $scope.setTitle('新增群组');
+  $scope.setTitle('Добавить новую группу');
   $scope.setMenuButton('arrow_back', 'admin.groupSetting');
   $scope.group = {};
   $q.all([
@@ -104,10 +104,10 @@ app.controller('AdminGroupSettingController', ['$scope', '$http', '$state',
     }, {
       timeout: 15000,
     }).then(success => {
-      alertDialog.show('添加群组成功', '确定');
+      alertDialog.show('Группа успешно добавлена', 'Конечно');
       $state.go('admin.groupSetting');
     }).catch(() => {
-      alertDialog.show('添加群组失败', '确定');
+      alertDialog.show('Не удалось добавить группу', 'Конечно');
     });
   };
   $scope.cancel = () => {
@@ -122,7 +122,7 @@ app.controller('AdminGroupSettingController', ['$scope', '$http', '$state',
 }
 ]).controller('AdminEditGroupController', ['$scope', '$http', '$q', '$state', '$stateParams', 'alertDialog', 'setGroupNoticeDialog', 'setGroupOrderDialog',
 ($scope, $http, $q, $state, $stateParams, alertDialog, setGroupNoticeDialog, setGroupOrderDialog) => {
-  $scope.setTitle('修改群组');
+  $scope.setTitle('Изменить группу');
   $scope.setMenuButton('arrow_back', 'admin.groupSetting');
   $scope.groupId = +$stateParams.groupId;
   $scope.group = {};
@@ -209,10 +209,10 @@ app.controller('AdminGroupSettingController', ['$scope', '$http', '$state',
     }, {
       timeout: 15000,
     }).then(success => {
-      alertDialog.show('修改群组成功', '确定');
+      alertDialog.show('Группа успешно изменена', 'Конечно');
       $state.go('admin.groupSetting');
     }).catch(() => {
-      alertDialog.show('修改群组失败', '确定');
+      alertDialog.show('Не удалось изменить группу', 'Конечно');
     });
   };
   $scope.cancel = () => {
@@ -223,10 +223,10 @@ app.controller('AdminGroupSettingController', ['$scope', '$http', '$state',
     $http.delete(`/api/admin/group/${ $scope.groupId }`, {
       timeout: 15000,
     }).then(success => {
-      alertDialog.show('删除群组成功', '确定');
+      alertDialog.show('Группа успешно удалена', 'Конечно');
       $state.go('admin.groupSetting');
     }).catch(() => {
-      alertDialog.show('删除群组失败', '确定');
+      alertDialog.show('Не удалось удалить группу.', 'Конечно');
     });
   };
   $scope.setGroupNotice = () => {

@@ -7,25 +7,25 @@
           <div layout="row" layout-align="center center" ng-if="publicInfo.status === 'show'">
               <form name="commentForm">
                   <md-input-container class="md-block">
-                      <label translate>备注</label>
+                      <label translate>Замечания</label>
                       <input type="text" name="comment" ng-model="publicInfo.comment">
                   </md-input-container>
               </form>
           </div>
           <div layout="column" layout-align="center center" ng-if="publicInfo.status === 'error'">
-              <div style="margin-bottom: 20px;" translate>修改备注失败</div>
+              <div style="margin-bottom: 20px;" translate>Не удалось изменить комментарий.</div>
           </div>
       </div>
   </md-dialog-content>
   <md-dialog-actions layout="row" layout-align="center center" ng-if="publicInfo.status !== 'loading'">
       <md-button class="md-primary" ng-click="publicInfo.close()" ng-if="publicInfo.status === 'show'">
-          {{ '取消' | translate }}
+          {{ 'Отмена' | translate }}
       </md-button>
       <md-button class="md-primary" ng-click="publicInfo.editComment()" ng-if="publicInfo.status === 'show'">
-          {{ '保存' | translate }}
+          {{ 'сохранять' | translate }}
       </md-button>
       <md-button class="md-primary" ng-click="publicInfo.close()" ng-if="publicInfo.status === 'error'">
-          {{ '确定' | translate }}
+          {{ 'Конечно' | translate }}
       </md-button>
   </md-dialog-actions>
 </md-dialog>

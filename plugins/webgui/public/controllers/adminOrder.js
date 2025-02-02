@@ -3,7 +3,7 @@ const app = angular.module('app');
 app
 .controller('AdminOrderSettingController', ['$scope', '$state', '$http',
   ($scope, $state, $http, $filter) => {
-    $scope.setTitle('订单设置');
+    $scope.setTitle('Настройка заказа');
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.settings');
     });
@@ -36,14 +36,14 @@ app
 ])
 .controller('AdminNewOrderController', ['$scope', '$state', '$http', '$filter', 'setOrderServerDialog', 'setOrderGroupDialog',
   ($scope, $state, $http, $filter, setOrderServerDialog, setOrderGroupDialog) => {
-    $scope.setTitle('新增订单');
+    $scope.setTitle('Добавить заказ');
     $scope.setMenuButton('arrow_back', 'admin.order');
 
     $scope.typeList = [
-      { key: '周', value: 2 },
-      { key: '月', value: 3 },
-      { key: '天', value: 4 },
-      { key: '小时', value: 5 },
+      { key: 'Неделя', value: 2 },
+      { key: 'Месяц', value: 3 },
+      { key: 'День', value: 4 },
+      { key: 'Час', value: 5 },
     ];
     $scope.order = {
       orderType: 'normal',
@@ -180,7 +180,7 @@ app
 ])
 .controller('AdminEditOrderController', ['$scope', '$state', '$http', '$stateParams', 'confirmDialog', '$filter', '$q', 'setOrderGroupDialog', 'setOrderServerDialog', 'setCurrentAccountDialog',
   ($scope, $state, $http, $stateParams, confirmDialog, $filter, $q, setOrderGroupDialog, setOrderServerDialog, setCurrentAccountDialog) => {
-    $scope.setTitle('编辑订单');
+    $scope.setTitle('Изменить заказ');
     $scope.setMenuButton('arrow_back', 'admin.order');
     $scope.changeCurrentAccount = {
       flow: false,
@@ -188,10 +188,10 @@ app
       autoRemove: false,
     };
     $scope.typeList = [
-      {key: '周', value: 2},
-      {key: '月', value: 3},
-      {key: '天', value: 4},
-      {key: '小时', value: 5},
+      {key: 'Неделя', value: 2},
+      {key: 'Месяц', value: 3},
+      {key: 'День', value: 4},
+      {key: 'Час', value: 5},
     ];
 
     $scope.orderId = $stateParams.id;
@@ -279,21 +279,21 @@ app
     $scope.cancel = () => { $state.go('admin.order'); };
     $scope.delete = () => {
       confirmDialog.show({
-        text: '真的要删除此订单吗？',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除订单失败',
+        text: 'Вы действительно хотите удалить этот заказ?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить заказ.',
         useFnErrorMessage: true,
         fn: function () {
           return $http.delete(`/api/admin/order/${ $scope.orderId }`).catch(err => {
             if(err.status === 403) {
               let errData = '删除订单失败';
-              if(err.data === 'account with this order exists') { errData = '无法删除订单，请先删除订单对应的账号'; }
-              if(err.data === 'giftcard with this order exists') { errData = '无法删除订单，请先删除订单对应的充值码'; }
-              if(err.data === 'flowpack order exists') { errData = '无法删除订单，请先删除对应的流量包订单'; }
+              if(err.data === 'account with this order exists') { errData = 'Невозможно удалить заказ, сначала удалите учетную запись, соответствующую заказу.'; }
+              if(err.data === 'giftcard with this order exists') { errData = 'Невозможно удалить заказ, сначала удалите код пополнения, соответствующий заказу.'; }
+              if(err.data === 'flowpack order exists') { errData = 'Невозможно удалить заказ, сначала удалите соответствующий заказ пакета трафика.'; }
               return Promise.reject(errData);
             } else {
-              return Promise.reject('网络异常，请稍后再试');
+              return Promise.reject('Неисправность сети, попробуйте еще раз позже');
             }
           });
         },

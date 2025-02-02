@@ -64,7 +64,7 @@ app.factory('subscribeDialog', [ '$mdDialog', '$http', 'configManager', ($mdDial
       $scope.toast = () => {
         $mdToast.show(
           $mdToast.simple()
-            .textContent('链接已复制到剪贴板')
+            .textContent('Ссылка скопирована в буфер обмена')
             .position('top right')
             .hideDelay(3000)
         );

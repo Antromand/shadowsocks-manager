@@ -13,7 +13,7 @@
                             <md-divider></md-divider>
                             <md-list-item>
                                 <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
-                                    <div flex="75" translate>启用邀请码功能</div>
+                                    <div flex="75" translate>Включить функцию кода приглашения</div>
                                     <div flex layout="row" layout-align="end center">
                                         <md-switch ng-model="refSetting.useRef" aria-label="useRef" ng-disabled="id !== 1"></md-switch>
                                     </div>
@@ -22,7 +22,7 @@
                             <md-divider></md-divider>
                             <md-list-item ng-show="refSetting.useRef && id === 1">
                                 <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
-                                    <div flex="75" translate>关闭注册时仍可使用邀请码</div>
+                                    <div flex="75" translate>Коды приглашений все еще можно использовать после закрытия регистрации.</div>
                                     <div flex layout="row" layout-align="end center">
                                         <md-switch ng-model="refSetting.useWhenSignupClose" aria-label="useWhenSignupClose"></md-switch>
                                     </div>
@@ -31,14 +31,14 @@
                             <md-divider ng-show="refSetting.useRef && id === 1"></md-divider>
                             <md-list-item ng-show="refSetting.useRef && id === 1">
                                 <md-input-container class="md-block" style="margin-bottom: -15px; width: 100%;">
-                                    <label translate>每个用户拥有邀请码数量</label>
+                                    <label translate>Количество пригласительных кодов у каждого пользователя</label>
                                     <input type="number" required name="refNumber" ng-model="refSetting.refNumber">
                                 </md-input-container>
                             </md-list-item>
                             <md-divider ng-show="refSetting.useRef && id === 1"></md-divider>
                             <md-list-item ng-show="refSetting.useRef && id === 1">
                                 <md-input-container class="md-block" style="margin-bottom: -15px; width: 100%;">
-                                    <label translate>每个邀请码可邀请的用户数</label>
+                                    <label translate>Количество пользователей, которых можно пригласить по одному коду приглашения</label>
                                     <input type="number" required name="refUserNumber" ng-model="refSetting.refUserNumber">
                                 </md-input-container>
                             </md-list-item>
@@ -55,36 +55,36 @@
         <md-card ng-click="toRefCodeList()" flex ng-show="id === 1">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">邀请码列表</span>
+                    <span class="md-headline">Список кодов приглашений</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
                 <div style="text-align: right;">
-                    <md-button class="md-primary"><span translate>点击进入</span>&gt;&gt;</md-button>
+                    <md-button class="md-primary"><span translate>Нажмите, чтобы войти</span>&gt;&gt;</md-button>
                 </div>
             </md-card-content>
         </md-card>
         <md-card ng-click="toRefUserList()" flex ng-show="id === 1">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">邀请用户列表</span>
+                    <span class="md-headline">Список приглашенных пользователей</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
                 <div style="text-align: right;">
-                    <md-button class="md-primary"><span translate>点击进入</span>&gt;&gt;</md-button>
+                    <md-button class="md-primary"><span translate>Нажмите, чтобы войти</span>&gt;&gt;</md-button>
                 </div>
             </md-card-content>
         </md-card>
         <md-card ng-click="toMyRefCode()" flex ng-show="id !== 1">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">我的邀请码</span>
+                    <span class="md-headline">Мой пригласительный код</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
                 <div style="text-align: right;">
-                    <md-button class="md-primary"><span translate>点击进入</span>&gt;&gt;</md-button>
+                    <md-button class="md-primary"><span translate>Нажмите, чтобы войти</span>&gt;&gt;</md-button>
                 </div>
             </md-card-content>
         </md-card>

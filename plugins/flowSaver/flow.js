@@ -362,7 +362,7 @@ const getServerPortFlow = async (serverId, accountId, timeArray, isMultiServerFl
 };
 
 /**
- * 为流量倍率而增加
+ * 为Скорость потока而增加
  */
 const getServerPortFlowWithScale = async (serverId, accountId, timeArray, isMultiServerFlow) => {
   const serverIdFilter = {};

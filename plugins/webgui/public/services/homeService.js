@@ -11,11 +11,11 @@ app.factory('homeApi', ['$http', $http => {
     .then(success => success.data)
     .catch(err => {
       if(err.status === 403) {
-        let errData = '用户注册失败';
-        if(err.data === 'user exists') { errData = '该用户已存在'; }
+        let errData = 'Регистрация пользователя не удалась';
+        if(err.data === 'user exists') { errData = 'Пользователь уже существует'; }
         return Promise.reject(errData);
       } else {
-        return Promise.reject('网络异常，请稍后再试');
+        return Promise.reject('Неисправность сети, попробуйте еще раз позже');
       }
     });
   };
@@ -27,13 +27,13 @@ app.factory('homeApi', ['$http', $http => {
       return success.data;
     }).catch(err => {
       if(err.status === 403) {
-        let errData = '用户名或密码错误';
-        if(err.data === 'user not exists') { errData = '该用户尚未注册'; }
-        if(err.data === 'invalid body') { errData = '请输入正确的用户名格式'; }
-        if(err.data === 'password retry out of limit') { errData = '密码重试次数已达上限\n请稍后再试'; }
+        let errData = 'Неправильное имя пользователя или пароль';
+        if(err.data === 'user not exists') { errData = 'Пользователь еще не зарегистрирован'; }
+        if(err.data === 'invalid body') { errData = 'Введите правильный формат имени пользователя.'; }
+        if(err.data === 'password retry out of limit') { errData = 'Достигнуто максимальное количество попыток ввода пароля.\nПопробуйте еще раз позже.'; }
         return Promise.reject(errData);
       } else {
-        return Promise.reject('网络异常，请稍后再试');
+        return Promise.reject('Неисправность сети, попробуйте еще раз позже');
       }
     });
   };
@@ -45,33 +45,33 @@ app.factory('homeApi', ['$http', $http => {
       return 'success';
     }).catch(err => {
       if(err.status === 403) {
-        let errData = '验证码发送错误';
-        if(err.data === 'invalid ref code') { errData = '发送错误，无效的邀请码'; }
-        if(err.data === 'email in black list') { errData = '发送错误，请更换邮箱尝试'; }
-        if(err.data === 'send email out of limit') { errData = '请求过于频繁，请稍后再试'; }
-        if(err.data === 'signup close') { errData = '当前时段尚未开放注册'; }
+        let errData = 'Ошибка отправки проверочного кода';
+        if(err.data === 'invalid ref code') { errData = 'Ошибка отправки, неверный код приглашения'; }
+        if(err.data === 'email in black list') { errData = 'Ошибка отправки, попробуйте другой адрес электронной почты'; }
+        if(err.data === 'send email out of limit') { errData = 'Запрос слишком частый, попробуйте еще раз позже'; }
+        if(err.data === 'signup close') { errData = 'Регистрация на текущий период не открыта'; }
         return Promise.reject(errData);
       } else {
-        return Promise.reject('网络异常，请稍后再试');
+        return Promise.reject('Неисправность сети, попробуйте еще раз позже');
       }
     });
   };
   const findPassword = email => {
     if(!email) {
-      return Promise.reject('请输入邮箱地址再点击“找回密码”');
+      return Promise.reject('Введите свой адрес электронной почты и нажмите «Восстановить пароль».');
     };
     return $http.post('/api/home/password/sendEmail', {
       email,
     }).then(success => {
-      return '重置密码链接已发至您的邮箱，\n请注意查收';
+      return 'Ссылка для сброса пароля была отправлена ​​на ваш адрес электронной почты, \nпожалуйста, проверьте ее.';
     }).catch(err => {
       let errData = null;
       if(err.status === 403 && err.data === 'already send') {
-        errData = '重置密码链接已经发送，\n请勿重复发送';
+        errData = 'Ссылка для сброса пароля была отправлена. \nПожалуйста, не отправляйте ее снова.';
       } else if(err.status === 403 && err.data === 'user not exists') {
-        errData = '请输入正确的邮箱地址';
+        errData = 'Пожалуйста, введите действительный адрес электронной почты';
       } else {
-        errData = '网络异常，请稍后再试';
+        errData = 'Неисправность сети, попробуйте еще раз позже';
       }
       return Promise.reject(errData);
     });

@@ -17,7 +17,7 @@ app.factory('qrcodeDialog', [ '$mdDialog', '$mdToast', ($mdDialog, $mdToast) => 
   const toast = (delay = 3000) => {
     $mdToast.show(
       $mdToast.simple()
-        .textContent('链接已复制')
+        .textContent('Ссылка скопирована.')
         .position('top right')
         .hideDelay(delay)
     );

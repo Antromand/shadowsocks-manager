@@ -39,12 +39,12 @@ app.factory('payByGiftCardDialog', ['$mdDialog', '$http', '$filter',
                     publicInfo.status = "finish";
                     const dat = result.data;
                     if (dat.success) {
-                        publicInfo.message = `成功充值${prettyOrderType(dat.type)}卡（卡号 ${dat.cardId}）`;
+                        publicInfo.message = `Успешное пополнение${prettyOrderType(dat.type)}Карточка（номер карты ${dat.cardId}）`;
                     } else {
                         publicInfo.message = dat.message;
                     }
                 })
-                .catch((err) => { publicInfo.status = "finish"; publicInfo.message = "充值出现错误"; });
+                .catch((err) => { publicInfo.status = "finish"; publicInfo.message = "Ошибка перезарядки"; });
         };
         publicInfo.close = close;
         publicInfo.submit = submit;

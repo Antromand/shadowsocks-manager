@@ -2,40 +2,40 @@ const app = angular.module('app');
 
 app.controller('AdminSettingsController', ['$scope', '$state',
   ($scope, $state) => {
-    $scope.setTitle('设置');
+    $scope.setTitle('Настроить');
     $scope.toSetting = path => { $state.go(path); };
     if($scope.id === 1) {
       $scope.settingList = [
         {
-          name: '基本设置',
+          name: 'Основные настройки',
           to: 'admin.baseSetting',
         },
         {
-          name: '公告管理',
+          name: 'Управление объявлениями',
           to: 'admin.notice',
         },
         {
-          name: '群组管理',
+          name: 'Управление группой',
           to: 'admin.groupSetting',
         },
         {
-          name: '订单设置',
+          name: 'Настройка заказа',
           to: 'admin.order',
         },
         {
-          name: '邮件设置',
+          name: 'Настройки почты',
           to: 'admin.mailSetting',
         },
         {
-          name: '账号设置',
+          name: 'Настройки учетной записи',
           to: 'admin.accountSetting',
         },
         {
-          name: '修改密码',
+          name: 'Изменить пароль',
           to: 'admin.passwordSetting',
         },
         {
-          name: '邀请码',
+          name: 'Код приглашения',
           to: 'admin.refSetting',
         },
       ];
@@ -47,18 +47,18 @@ app.controller('AdminSettingsController', ['$scope', '$state',
       };
       if($scope.config.giftcard) {
         $scope.settingList.push({
-          name: '充值码',
+          name: 'Код пополнения',
           to: 'admin.listGiftCardBatch',
         });
       };
     } else {
       $scope.settingList = [
         {
-          name: '邀请码',
+          name: 'Код приглашения',
           to: 'admin.refSetting',
         },
         {
-          name: '修改密码',
+          name: 'Изменить пароль',
           to: 'admin.passwordSetting',
         },
       ];
@@ -67,7 +67,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
 ])
 .controller('AdminAccountSettingController', ['$scope', '$http', '$timeout', '$state',
   ($scope, $http, $timeout, $state) => {
-    $scope.setTitle('账号设置');
+    $scope.setTitle('Настройки учетной записи');
     $scope.setMenuButton('arrow_back', 'admin.settings');
     let lastSave = 0;
     let lastSavePromise = null;
@@ -129,7 +129,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminBaseSettingController', ['$scope', '$http', '$timeout', '$state', '$q',
   ($scope, $http, $timeout, $state, $q) => {
-    $scope.setTitle('基本设置');
+    $scope.setTitle('Основные настройки');
     $scope.setMenuButton('arrow_back', 'admin.settings');
     $scope.baseData = {};
     let lastSave = 0;
@@ -253,12 +253,12 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminMailSettingController', ['$scope', '$http', '$timeout', '$state', 'setEmailDialog',
   ($scope, $http, $timeout, $state, setEmailDialog) => {
-    $scope.setTitle('邮件设置');
+    $scope.setTitle('Настройки почты');
     $scope.setMenuButton('arrow_back', 'admin.settings');
     $scope.mails = [
-      { type: 'code', name: '注册验证码' },
-      { type: 'reset', name: '密码重置' },
-      { type: 'order', name: '订单完成' },
+      { type: 'code', name: 'Код подтверждения регистрации' },
+      { type: 'reset', name: 'Сброс пароля' },
+      { type: 'order', name: 'Заказ выполнен' },
     ];
     $scope.setEmail = type => {
       setEmailDialog.show(type);
@@ -266,7 +266,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminPasswordSettingController', ['$scope', '$http', '$timeout', '$state', 'adminApi', 'alertDialog', '$localStorage',
   ($scope, $http, $timeout, $state, adminApi, alertDialog, $localStorage) => {
-    $scope.setTitle('修改密码');
+    $scope.setTitle('Изменить пароль');
     $scope.setMenuButton('arrow_back', 'admin.settings');
     $scope.data = {
       password: '',
@@ -276,7 +276,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
     $scope.confirm = () => {
       alertDialog.loading();
       adminApi.changePassword($scope.data.password, $scope.data.newPassword).then(success => {
-        alertDialog.show('修改密码成功，请重新登录', '确定')
+        alertDialog.show('Пароль успешно изменен, пожалуйста, войдите снова', 'Конечно')
         .then(() => {
           return $http.post('/api/home/logout');
         }).then(() => {
@@ -285,13 +285,13 @@ app.controller('AdminSettingsController', ['$scope', '$state',
           $state.go('home.index');
         });
       }).catch(err => {
-        alertDialog.show('修改密码失败', '确定');
+        alertDialog.show('Смена пароля не удалась', 'Конечно');
       });
     };
   }
 ]).controller('AdminTelegramSettingController', ['$scope', '$http', '$interval', '$state',
   ($scope, $http, $interval, $state) => {
-    $scope.setTitle('绑定Telegram');
+    $scope.setTitle('Ссылка на Телеграмм');
     $scope.setMenuButton('arrow_back', 'admin.settings');
     $scope.isLoading = true;
     $scope.code = {};
@@ -312,26 +312,26 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminPaymentListController', ['$scope', '$http', '$state',
   ($scope, $http, $state) => {
-    $scope.setTitle('支付设置');
+    $scope.setTitle('Настройки оплаты');
     $scope.setMenuButton('arrow_back', 'admin.settings');
     $scope.time = [{
       id: 'hour',
-      name: '小时',
+      name: 'Час',
     }, {
       id: 'day',
-      name: '天',
+      name: 'День',
     }, {
       id: 'week',
-      name: '周',
+      name: 'Неделя',
     }, {
       id: 'month',
-      name: '月',
+      name: 'Месяц',
     }, {
       id: 'season',
-      name: '季',
+      name: 'Квартал',
     }, {
       id: 'year',
-      name: '年',
+      name: 'Год',
     }];
     $scope.editPayment = id => {
       $state.go('admin.editPayment', { paymentType: id });
@@ -342,23 +342,23 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminEditPaymentController', ['$scope', '$http', '$timeout', '$interval', '$state', '$stateParams',
   ($scope, $http, $timeout, $interval, $state, $stateParams) => {
-    $scope.setTitle('修改支付');
+    $scope.setTitle('Изменить платеж');
     $scope.setMenuButton('arrow_back', 'admin.paymentList');
     $scope.paymentType = $stateParams.paymentType;
     $scope.paymentTypeName = type => {
       switch(type) {
         case 'hour':
-          return '小时'; break;
+          return 'Час'; break;
         case 'day':
-          return '天'; break;
+          return 'День'; break;
         case 'week':
-          return '周'; break;
+          return 'Неделя'; break;
         case 'month':
-          return '月'; break;
+          return 'Месяц'; break;
         case 'season':
-          return '季'; break;
+          return 'Квартал'; break;
         case 'year':
-          return '年'; break;
+          return 'Год'; break;
         default:
           return '';
       }
@@ -416,7 +416,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminRefSettingController', ['$scope', '$http', '$timeout', '$state',
   ($scope, $http, $timeout, $state) => {
-    $scope.setTitle('邀请码管理');
+    $scope.setTitle('Управление кодом приглашения');
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.settings');
     });
@@ -458,7 +458,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminRefCodeListController', ['$scope', '$http', '$timeout', '$state', '$mdMedia',
   ($scope, $http, $timeout, $state, $mdMedia) => {
-    $scope.setTitle('邀请码列表');
+    $scope.setTitle('Список кодов приглашений');
     $scope.setMenuSearchButton('search');
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.refSetting');
@@ -539,7 +539,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   }
 ]).controller('AdminEditRefCodeController', ['$scope', '$http', '$timeout', '$state', '$filter', '$stateParams',
 ($scope, $http, $timeout, $state, $filter, $stateParams) => {
-  $scope.setTitle('编辑邀请码');
+  $scope.setTitle('Изменить код приглашения');
   $scope.setMenuButton('arrow_back', function() {
     $state.go('admin.refCodeList');
   });
@@ -571,12 +571,12 @@ app.controller('AdminSettingsController', ['$scope', '$state',
   });
   $scope.getRefUrl = code => `${ $scope.config.site }/home/ref/${ code }`;
   $scope.clipboardSuccess = event => {
-    $scope.toast($filter('translate')('邀请链接已复制到剪贴板'));
+    $scope.toast($filter('translate')('Ссылка приглашения скопирована в буфер обмена'));
   };
 }
 ]).controller('AdminRefUserListController', ['$scope', '$http', '$timeout', '$state', '$mdMedia',
   ($scope, $http, $timeout, $state, $mdMedia) => {
-    $scope.setTitle('邀请用户列表');
+    $scope.setTitle('Список приглашенных пользователей');
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.refSetting');
     });
@@ -627,7 +627,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
 ])
 .controller('AdminMyRefCodeController', ['$scope', '$http', '$filter', '$state', '$mdMedia',
   ($scope, $http, $filter, $state, $mdMedia) => {
-    $scope.setTitle('我的邀请码');
+    $scope.setTitle('Мой пригласительный код');
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.refSetting');
     });
@@ -637,13 +637,13 @@ app.controller('AdminSettingsController', ['$scope', '$state',
       return `${ $scope.config.site }/home/ref/${ code }`;
     };
     $scope.clipboardSuccess = event => {
-      $scope.toast($filter('translate')('邀请链接已复制到剪贴板'));
+      $scope.toast($filter('translate')('Ссылка приглашения скопирована в буфер обмена'));
     };
   }
 ])
 .controller('AdminAddRefUserController', ['$scope', '$http', '$timeout', '$state', '$mdMedia', 'alertDialog',
   ($scope, $http, $timeout, $state, $mdMedia, alertDialog) => {
-    $scope.setTitle('添加邀请关系');
+    $scope.setTitle('Добавить приглашение');
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.refUserList');
     });
@@ -683,7 +683,7 @@ app.controller('AdminSettingsController', ['$scope', '$state',
       .then(success => {
         $state.go('admin.refUserList');
       }).catch(err => {
-        alertDialog.show('添加失败', '确定');
+        alertDialog.show('Добавить не удалось', 'Конечно');
       });
     };
     $scope.cancel = () => {

@@ -2,7 +2,7 @@ const app = angular.module('app');
 
 app.controller('AdminGiftCardController', ['$scope', '$http', 'addGiftCardBatchDialog', '$state',
   ($scope, $http, addGiftCardBatchDialog, $state) => {
-    $scope.setTitle('充值码管理');
+    $scope.setTitle('Управление кодами пополнения');
     $scope.setMenuButton('arrow_back', 'admin.settings');
     const showBatch = () => {
       $http.get('/api/admin/giftcard/list').then(result => {
@@ -28,7 +28,7 @@ app.controller('AdminGiftCardController', ['$scope', '$http', 'addGiftCardBatchD
 ]).controller('AdminGiftCardBatchDetailsController', ['$scope', '$http', '$stateParams', 'confirmDialog', 'alertDialog',
   ($scope, $http, $stateParams, confirmDialog, alertDialog) => {
     const batchNumber = $stateParams.batchNumber;
-    $scope.setTitle(`充值码[ ${batchNumber} ]`);
+    $scope.setTitle(`Код пополнения[ ${batchNumber} ]`);
     $scope.setMenuButton('arrow_back', 'admin.listGiftCardBatch');
     const showDetails = () => {
       $http.get(`/api/admin/giftcard/details/${batchNumber}`).then(result => {
@@ -42,16 +42,16 @@ app.controller('AdminGiftCardController', ['$scope', '$http', 'addGiftCardBatchD
       });
     };
     $scope.showPassword = (id, password) => {
-      alertDialog.show(`卡号：${id}，密码：${password}`, '确定');
+      alertDialog.show(`номер карты：${id}，пароль：${password}`, 'Конечно');
     };
     showDetails();
 
     $scope.revoke = () => {
       confirmDialog.show({
-        text: '确实要召回这些卡片吗？该操作不可撤销。',
-        cancel: '取消',
-        confirm: '召回',
-        error: '召回失败',
+        text: 'Вы уверены, что хотите отозвать эти карты? Это действие не может быть отменено. ',
+        cancel: 'Отмена',
+        confirm: 'Отозвать',
+        error: 'Неудачный отзыв',
         fn: () => {
           return $http.post(`/api/admin/giftcard/revoke`, { batchNumber });
         },

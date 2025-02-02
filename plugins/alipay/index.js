@@ -329,7 +329,7 @@ const getUserFinishOrder = async userId => {
   orders = orders.map(order => {
     return {
       orderId: order.orderId,
-      type: '支付宝',
+      type: 'Alipay',
       amount: order.amount,
       createTime: order.createTime,
     };

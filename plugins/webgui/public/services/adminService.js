@@ -31,10 +31,10 @@ app.factory('adminApi', ['$http', '$q', 'moment', 'preload', '$timeout', 'config
       }).filter(f => f);
     }
     let url;
-    if(payType === '支付宝') { url = '/api/admin/alipay'; }
+    if(payType === 'Alipay') { url = '/api/admin/alipay'; }
     if(payType === 'Paypal') { url = '/api/admin/paypal'; }
-    if(payType === '充值码') { url = '/api/admin/giftcard'; }
-    if(payType === '邀请码') { url = '/api/admin/refOrder'; }
+    if(payType === 'Код пополнения') { url = '/api/admin/giftcard'; }
+    if(payType === 'Код приглашения') { url = '/api/admin/refOrder'; }
     const search = opt.search || '';
     const filter = opt.filter || '';
     // const sort = opt.sort || 'alipay.createTime_desc';
@@ -45,10 +45,10 @@ app.factory('adminApi', ['$http', '$q', 'moment', 'preload', '$timeout', 'config
 
   const getCsvOrder = (payType, opt = {}) => {
     let url;
-    if(payType === '支付宝') { url = '/api/admin/alipay/csv'; }
+    if(payType === 'Alipay') { url = '/api/admin/alipay/csv'; }
     if(payType === 'Paypal') { url = '/api/admin/paypal/csv'; }
-    if(payType === '充值码') { url = '/api/admin/giftcard/csv'; }
-    if(payType === '邀请码') { url = '/api/admin/refOrder/csv'; }
+    if(payType === 'Код пополнения') { url = '/api/admin/giftcard/csv'; }
+    if(payType === 'Код приглашения') { url = '/api/admin/refOrder/csv'; }
     let downloadUrl = url + '?';
     for(const o in opt) {
       if(Array.isArray(opt[o])) {

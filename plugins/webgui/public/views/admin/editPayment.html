@@ -13,7 +13,7 @@
                     <div flex>
                         <form name="settingForm" layout="row" layout-wrap>
                             <md-input-container class="md-block" flex="45">
-                                <label>支付宝</label>
+                                <label>Alipay</label>
                                 <input type="number" required name="alipay" ng-model="paymentData.alipay">
                             </md-input-container>
                             <div flex="10"></div>
@@ -22,15 +22,15 @@
                                 <input type="number" required name="paypal" ng-model="paymentData.paypal">
                             </md-input-container>
                             <md-input-container class="md-block" flex="100">
-                                <label>流量（MB）</label>
+                                <label>Поток (MB）</label>
                                 <input type="number" required name="flow" ng-model="paymentData.flow">
                             </md-input-container>
                             <md-input-container class="md-block" flex="100">
-                                <label>订单名称</label>
+                                <label>Название заказа</label>
                                 <input type="text" required name="orderName" ng-model="paymentData.orderName">
                             </md-input-container>
                             <md-input-container class="md-block" flex="100">
-                                <label>邀请获得时长</label>
+                                <label>Срок действия приглашения</label>
                                 <input type="text" required name="refTime" ng-model="paymentData.refTime" placeholder="1d2h3m">
                             </md-input-container>
                         </form>
@@ -41,7 +41,7 @@
                 <md-list>
                     <md-list-item>
                         <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
-                            <div flex="75" translate>到期自动删除</div>
+                            <div flex="75" translate>Автоматически удалять по истечении срока действия</div>
                             <div flex layout="row" layout-align="end center">
                                 <md-switch ng-model="paymentData.autoRemove" aria-label="autoRemove"></md-switch>
                             </div>
@@ -52,7 +52,7 @@
                 <md-list>
                     <md-list-item>
                         <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
-                            <div flex="75" translate>合并多服务器流量统计</div>
+                            <div flex="75" translate>Объединить статистику трафика нескольких серверов</div>
                             <div flex layout="row" layout-align="end center">
                                 <md-switch ng-model="paymentData.multiServerFlow" aria-label="multiServerFlow"></md-switch>
                             </div>
@@ -63,7 +63,7 @@
                 <md-list>
                     <md-list-item>
                         <div class="md-list-item-text" style="width: 100%;" layout="row" layout-align="space-between center">
-                            <div flex="75" translate>自定义可用服务器</div>
+                            <div flex="75" translate>Настроить доступные серверы</div>
                             <div flex layout="row" layout-align="end center">
                                 <md-switch ng-model="setServerForPayment" aria-label="server"></md-switch>
                             </div>

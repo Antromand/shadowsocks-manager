@@ -2,7 +2,7 @@ const app = angular.module('app');
 
 app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', '$localStorage', 'adminApi', '$timeout', '$interval', 'serverChartDialog',
   ($scope, $http, $state, moment, $localStorage, adminApi, $timeout, $interval, serverChartDialog) => {
-    $scope.setTitle('服务器');
+    $scope.setTitle('сервер');
     $scope.setMenuSearchButton('search');
     $scope.setMenuRightButton('timeline');
     if(!$localStorage.admin.serverChart) {
@@ -181,7 +181,7 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
 ])
 .controller('AdminServerPageController', ['$scope', '$state', '$stateParams', '$http', 'moment', '$mdDialog', 'adminApi', '$localStorage', '$mdMedia', '$interval', 'banDialog',
   ($scope, $state, $stateParams, $http, moment, $mdDialog, adminApi, $localStorage, $mdMedia, $interval, banDialog) => {
-    $scope.setTitle('服务器');
+    $scope.setTitle('сервер');
     $scope.setMenuButton('arrow_back', 'admin.server');
     $scope.visiblePortNumber = 60;
     const serverId = $stateParams.serverId;
@@ -253,10 +253,10 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
     $scope.deleteServer = id => {
       const confirm = $mdDialog.confirm()
         .title('')
-        .textContent('删除服务器？')
+        .textContent('Удалить сервер?')
         .ariaLabel('deleteServer')
-        .ok('确认')
-        .cancel('取消');
+        .ok('Подтвердить')
+        .cancel('Отмена');
       $mdDialog.show(confirm).then(() => {
         return $http.delete(`/api/admin/server/${ serverId }`);
       }).then(() => {
@@ -467,7 +467,7 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
 ])
 .controller('AdminAddServerController', ['$scope', '$state', '$stateParams', '$http', 'alertDialog', '$q',
   ($scope, $state, $stateParams, $http, alertDialog, $q) => {
-    $scope.setTitle('新增服务器');
+    $scope.setTitle('Добавить новые серверы');
     $scope.setMenuButton('arrow_back', 'admin.server');
     $scope.methods = [
       'aes-256-cfb',
@@ -553,10 +553,10 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
           tags: $scope.tags,
         })
       }).then(() => {
-        alertDialog.show('添加服务器成功', '确定');
+        alertDialog.show('Сервер успешно добавлен', 'Конечно');
         $state.go('admin.server');
       }).catch(() => {
-        alertDialog.show('添加服务器失败', '确定');
+        alertDialog.show('Не удалось добавить сервер', 'Конечно');
       });
     };
     $scope.cancel = () => {
@@ -566,7 +566,7 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
 ])
 .controller('AdminEditServerController', ['$scope', '$state', '$stateParams', '$http', 'confirmDialog', 'alertDialog', '$q',
   ($scope, $state, $stateParams, $http, confirmDialog, alertDialog, $q) => {
-    $scope.setTitle('编辑服务器');
+    $scope.setTitle('Редактировать сервер');
     const serverId = $stateParams.serverId;
     $scope.setMenuButton('arrow_back', function() {
       $state.go('admin.serverPage', { serverId: $stateParams.serverId });
@@ -689,10 +689,10 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
           check: $scope.server.check,
         }),
       ]).then(() => {
-        alertDialog.show('修改服务器成功', '确定');
+        alertDialog.show('Сервер успешно изменен', 'Конечно');
         $state.go('admin.serverPage', { serverId: $stateParams.serverId });
       }).catch(() => {
-        alertDialog.show('修改服务器失败', '确定');
+        alertDialog.show('Не удалось изменить сервер', 'Конечно');
       });
     };
     $scope.cancel = () => {
@@ -700,10 +700,10 @@ app.controller('AdminServerController', ['$scope', '$http', '$state', 'moment', 
     };
     $scope.deleteServer = () => {
       confirmDialog.show({
-        text: '真的要删除服务器吗？',
-        cancel: '取消',
-        confirm: '删除',
-        error: '删除服务器失败',
+        text: 'Вы действительно хотите удалить сервер?',
+        cancel: 'Отмена',
+        confirm: 'Удалить',
+        error: 'Не удалось удалить сервер',
         fn: function () { return $http.delete('/api/admin/server/' + $stateParams.serverId); },
       }).then(() => {
         $state.go('admin.server');

@@ -13,35 +13,35 @@
                     </md-select>
                 </div>
                 <md-input-container class="md-block">
-                    <label translate>名称</label>
+                    <label translate>Имя</label>
                     <input type="text" required name="name" ng-model="server.name">
                     <div ng-messages="serverForm.name.$error">
-                        <div ng-message="required">名称不能为空</div>
+                        <div ng-message="required">Имя не может быть пустым</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label translate>备注</label>
+                    <label translate>Замечания</label>
                     <input type="text" required name="comment" ng-model="server.comment">
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label translate>地址</label>
+                    <label translate>Адрес</label>
                     <input type="text" required name="address" ng-model="server.address">
                     <div ng-messages="serverForm.address.$error">
-                        <div ng-message="required">地址不能为空</div>
+                        <div ng-message="required">Адрес не может быть пустым</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label translate>端口</label>
+                    <label translate>порт</label>
                     <input type="text" required name="port" ng-model="server.port">
                     <div ng-messages="serverForm.port.$error">
-                        <div ng-message="required">端口不能为空</div>
+                        <div ng-message="required">Порт не может быть пустым</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label translate>密码</label>
+                    <label translate>пароль</label>
                     <input type="text" required name="password" ng-model="server.password">
                     <div ng-messages="serverForm.password.$error">
-                        <div ng-message="required">密码不能为空</div>
+                        <div ng-message="required">Пароль не может быть пустым</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" ng-if="server.type === 'WireGuard'">
@@ -49,19 +49,19 @@
                     <input type="text" required name="publicKey" ng-model="server.key">
                 </md-input-container>
                 <md-input-container class="md-block" ng-if="server.type === 'WireGuard'">
-                    <label translate>网段</label>
+                    <label translate>Сетевой сегмент</label>
                     <input type="text" required name="net" ng-model="server.net">
                 </md-input-container>
                 <md-input-container class="md-block" ng-if="server.type === 'WireGuard'">
-                    <label translate>WireGuard端口</label>
+                    <label translate>WireGuard-порт</label>
                     <input type="number" required name="wgPort" ng-model="server.wgPort">
                 </md-input-container>
                 <md-input-container class="md-block" ng-if="server.type === 'Trojan'">
-                    <label>Trojan端口</label>
+                    <label>Trojan-порт</label>
                     <input type="number" required name="tjPort" ng-model="server.tjPort">
                 </md-input-container>
                 <div ng-if="server.type === 'Shadowsocks'" class="md-block" layout="column" layout-align="center stretch" style="margin-bottom: 25px;">
-                    <label flex style="color: rgba(0,0,0, 0.54); font-size: 13px;" translate>加密方式</label>
+                    <label flex style="color: rgba(0,0,0, 0.54); font-size: 13px;" translate>Метод шифрования</label>
                     <md-autocomplete flex
                         md-selected-item="server.method"
                         md-items="method in methods"
@@ -70,38 +70,38 @@
                         md-search-text="methodSearch"
                         md-search-text-change="setMethod()"
                         md-require-match="false"
-                        placeholder="请填写加密方式">
+                        placeholder="Пожалуйста, введите метод шифрования">
                         <md-item-template>
                             <span md-highlight-text="methodSearch" md-highlight-flags="^i">{{method}}</span>
                         </md-item-template>
                     </md-autocomplete>
                 </div>
                 <md-input-container class="md-block">
-                    <label translate>流量倍率</label>
+                    <label translate>Скорость потока</label>
                     <input type="text" required name="scale" ng-model="server.scale">
                     <div ng-messages="serverForm.scale.$error">
-                        <div ng-message="required" translate>流量倍率不能为空</div>
+                        <div ng-message="required" translate>Скорость потока不能为空</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" ng-if="server.type === 'Shadowsocks'">
-                    <label translate>端口偏移</label>
+                    <label translate>Смещение порта</label>
                     <input type="number" required name="shift" ng-model="server.shift">
                     <div ng-messages="serverForm.shift.$error">
-                        <div ng-message="required" translate>端口偏移量不能为空</div>
+                        <div ng-message="required" translate>Смещение порта не может быть пустым</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <label translate>插件参数</label>
+                    <label translate>Параметры плагина</label>
                     <input type="text" name="pluginOptions" ng-model="server.pluginOptions">
                 </md-input-container>
                 <div style="width: 100%;">
-                    <md-chips ng-model="tags" placeholder="请输入标签">
+                    <md-chips ng-model="tags" placeholder="Пожалуйста, введите тег">
                         <md-autocomplete
                             md-selected-item="tagsAutoComplete.selectedItem"
                             md-search-text="tagsAutoComplete.searchText"
                             md-items="item in tagsAutoComplete.querySearch(tagsAutoComplete.searchText)"
                             md-item-text="item"
-                            placeholder="请输入标签"
+                            placeholder="Пожалуйста, введите тег"
                         >
                           <span md-highlight-text="tagsAutoComplete.searchText">{{item}}</span>
                         </md-autocomplete>
@@ -111,7 +111,7 @@
                     </md-chips>
                 </div>
                 <div style="width: 100%;" layout="row" layout-align="space-between center">
-                    <div flex="75" translate>立即同步所有端口</div>
+                    <div flex="75" translate>Синхронизировать все порты сейчас</div>
                     <div flex layout="row" layout-align="end center">
                         <md-switch ng-model="server.check" aria-label="check" ng-true-value="1" ng-false-value="0"></md-switch>
                     </div>
@@ -125,9 +125,9 @@
         <div flex layout="row" layout-align="center start">
             <div flex="10" flex-gt-sm="30"></div>
             <div layout="row" flex layout-align="space-around center">
-                <md-button class="md-primary" ng-click="cancel()"><span translate>取消</span></md-button>
-                <md-button class="md-warn" ng-click="deleteServer()" translate><span translate>删除</span></md-button>
-                <md-button class="md-raised md-primary" ng-click="confirm()" translate><span translate>确认</span></md-button>
+                <md-button class="md-primary" ng-click="cancel()"><span translate>Отменить</span></md-button>
+                <md-button class="md-warn" ng-click="deleteServer()" translate><span translate>Удалить</span></md-button>
+                <md-button class="md-raised md-primary" ng-click="confirm()" translate><span translate>подтверждать</span></md-button>
             </div>
             <div flex="10" flex-gt-sm="30"></div>
         </div>

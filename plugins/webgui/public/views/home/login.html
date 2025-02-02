@@ -5,22 +5,22 @@
         <div flex layout="column" layout-align="space-around stretch">
             <form name="userForm">
                 <md-input-container class="md-block">
-                    <label translate>邮箱</label>
+                    <label translate>Электронная почта</label>
                     <input type="email" required name="email" ng-model="user.email">
                     <div ng-messages="userForm.email.$error">
-                        <div ng-message="required">{{ '邮箱不能为空' | translate }}</div>
-                        <div ng-message="email">{{ '必须填写一个有效邮箱地址' | translate }}</div>
+                        <div ng-message="required">{{ 'Адрес электронной почты не может быть пустым' | translate }}</div>
+                        <div ng-message="email">{{ 'Требуется действительный адрес электронной почты.' | translate }}</div>
                     </div>
                 </md-input-container>
                 <div layout="row">
                     <md-input-container class="md-block" flex="65">
-                        <label>{{ '密码' | translate }}</label>
+                        <label>{{ 'пароль' | translate }}</label>
                         <input type="password" required name="password" ng-model="user.password" ng-keypress="enterKey($event)">
                     </md-input-container>
                     <div flex layout="row" layout-align="space-between center">
                         <div flex="5"></div>
                         <div style="margin-bottom: 25px;">
-                            <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button>
+                            <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ 'Авторизоваться' | translate }}</md-button>
                         </div>
                     </div>
                 </div>
@@ -31,9 +31,9 @@
     <div flex layout="row" layout-align="center start">
         <div flex="10" flex-gt-sm="30"></div>
         <div layout="row" flex layout-align="space-around center">
-            <md-button class="md-primary" ng-click="findPassword()">{{ '找回密码' | translate }}</md-button>
-            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">{{ '社交账号登录' | translate }}</md-button>
-            <!-- <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button> -->
+            <md-button class="md-primary" ng-click="findPassword()">{{ 'Восстановить пароль' | translate }}</md-button>
+            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">{{ 'Войти через социальную учетную запись' | translate }}</md-button>
+            <!-- <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ 'Авторизоваться' | translate }}</md-button> -->
         </div>
         <div flex="10" flex-gt-sm="30"></div>
     </div>
@@ -54,22 +54,22 @@
                         <div flex layout="column" layout-align="space-around stretch">
                             <form name="userForm">
                                 <md-input-container class="md-block">
-                                    <label>{{ '邮箱' | translate }}</label>
+                                    <label>{{ 'Почта' | translate }}</label>
                                     <input type="email" required name="email" ng-model="user.email">
                                     <div ng-messages="userForm.email.$error">
-                                        <div ng-message="required">{{ '邮箱不能为空' | translate }}</div>
-                                        <div ng-message="email">{{ '必须填写一个有效邮箱地址' | translate }}</div>
+                                        <div ng-message="required">{{ 'Адрес электронной почты не может быть пустым' | translate }}</div>
+                                        <div ng-message="email">{{ 'Требуется действительный адрес электронной почты.' | translate }}</div>
                                     </div>
                                 </md-input-container>
                                 <div layout="row">
                                     <md-input-container class="md-block" flex="65">
-                                        <label>{{ '密码' | translate }}</label>
+                                        <label>{{ 'пароль' | translate }}</label>
                                         <input type="password" required name="password" ng-model="user.password" ng-keypress="enterKey($event)">
                                     </md-input-container>
                                     <div flex layout="row" layout-align="space-between center">
                                         <div flex="5"></div>
                                         <div style="margin-bottom: 25px;">
-                                            <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button>
+                                            <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ 'Авторизоваться' | translate }}</md-button>
                                         </div>
                                     </div>
                                 </div>
@@ -80,9 +80,9 @@
                     <div flex layout="row" layout-align="center start">
                         <div flex="10"></div>
                         <div layout="row" flex layout-align="space-around center">
-                            <md-button class="md-primary" ng-click="findPassword()">{{ '找回密码' | translate }}</md-button>
-                            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">{{ '社交账号登录' | translate }}</md-button>
-                            <!-- <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ '登录' | translate }}</md-button> -->
+                            <md-button class="md-primary" ng-click="findPassword()">{{ 'Восстановить пароль' | translate }}</md-button>
+                            <md-button class="md-primary" ng-click="socialLogin()" ng-disabled="!hasSocialLogin">{{ 'Войти с помощью учетной записи социальной сети' | translate }}</md-button>
+                            <!-- <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!user.email || !user.password">{{ 'Авторизоваться' | translate }}</md-button> -->
                         </div>
                         <div flex="10"></div>
                     </div>

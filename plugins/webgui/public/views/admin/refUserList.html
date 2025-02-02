@@ -7,19 +7,19 @@
                     <md-divider></md-divider>
                     <md-list-item>
                         <div class="md-list-item-text" flex layout="row" layout-align="space-between center">
-                            <span>邀请码：</span><span>{{ u.code }}</span>
+                            <span>Код приглашения: </span><span>{{ u.code }}</span>
                         </div>
                     </md-list-item>
                     <md-divider></md-divider>
                     <md-list-item ng-click="toUser(u.sourceUserId)">
                         <div class="md-list-item-text" flex layout="row" layout-align="space-between center">
-                            <span>邀请人：</span><span>{{ u.sourceUser }}</span>
+                            <span>Приглашающий：</span><span>{{ u.sourceUser }}</span>
                         </div>
                     </md-list-item>
                     <md-divider></md-divider>
                     <md-list-item ng-click="toUser(u.userId)">
                         <div class="md-list-item-text" flex layout="row" layout-align="space-between center">
-                            <span>注册用户：</span><span>{{ u.user }}</span>
+                            <span>Зарегистрированный пользователь：</span><span>{{ u.user }}</span>
                         </div>
                     </md-list-item>
                     <md-divider></md-divider>

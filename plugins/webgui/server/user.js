@@ -621,12 +621,12 @@ exports.payByGiftCard = async (req, res) => {
     };
     
     if(await checkGiftcardType()) {
-      return res.send({ success: false, message: '充值码类型错误' });
+      return res.send({ success: false, message: 'Ошибка типа кода пополнения' });
     };
     const result = await giftcard.processOrder(userId, accountId, password);
     res.send(result);
   } catch (err) {
-    logger.error(`使用充值码时出现错误：${err.toString()}`);
+    logger.error(`Ошибка при использовании кода пополнения：${err.toString()}`);
     res.status(500).end();
   }
 };

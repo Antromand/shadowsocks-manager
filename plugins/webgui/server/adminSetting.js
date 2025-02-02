@@ -75,16 +75,16 @@ setDefaultValue('payment', {
 });
 setDefaultValue('mail', {
   code: {
-    title: 'ss验证码',
-    content: '欢迎新用户注册，\n您的验证码是：${code}',
+    title: 'ss проверочный код',
+    content: 'Добро пожаловать на регистрацию в качестве нового пользователя, \nВаш код подтверждения：${code}',
   },
   reset: {
-    title: 'ss密码重置',
-    content: '请访问下列地址重置您的密码：\n${address}',
+    title: 'ss сброс пароля',
+    content: 'Пожалуйста, посетите следующий адрес, чтобы сбросить пароль：\n${address}',
   },
   order: {
-    title: 'ss订单支付成功',
-    content: '暂时没想好这里要写什么',
+    title: 'ss оплата заказа прошла успешно',
+    content: 'Я пока не решил, что здесь написать.',
   },
 });
 

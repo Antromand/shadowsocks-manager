@@ -146,10 +146,10 @@ const createUser = async (email, password, from = '') => {
     }
   }
   logger.info(`[${ email }] signup success`);
-  push.pushMessage('注册', {
-    body: `${ from }用户[ ${ email.toString().toLowerCase() } ]注册成功`,
+  push.pushMessage('зарегистрироваться', {
+    body: `${ from }Регистрация пользователя[ ${ email.toString().toLowerCase() } ]прошла успешно`,
   });
-  isTelegram && telegram.push(`${ from }用户[ ${ email.toString().toLowerCase() } ]注册成功`);
+  isTelegram && telegram.push(`${ from }Регистрация пользователя[ ${ email.toString().toLowerCase() } ]прошла успешно`);
   return {
     id: userId,
     type: 'normal',
@@ -232,10 +232,10 @@ exports.signup = async (req, res) => {
       }
     }
     logger.info(`[${ req.body.email }] signup success`);
-    push.pushMessage('注册', {
-      body: `用户[ ${ req.body.email.toString().toLowerCase() } ]注册成功`,
+    push.pushMessage('зарегистрироваться', {
+      body: `Регистрация пользователя[ ${ req.body.email.toString().toLowerCase() } ]прошла успешно`,
     });
-    isTelegram && telegram.push(`用户[ ${ req.body.email.toString().toLowerCase() } ]注册成功`);
+    isTelegram && telegram.push(`Регистрация пользователя[ ${ req.body.email.toString().toLowerCase() } ]прошла успешно`);
     res.send(type);
   } catch(err) {
     logger.error(`[${ req.body.email }] signup fail: ${ err }`);
@@ -322,7 +322,7 @@ exports.googleLogin = async (req, res) => {
       if(user) {
         req.session.user = user.id;
         req.session.type = user.type;
-        logger.info(`Google用户[${email}]登录`);
+        logger.info(`GoogleРегистрация пользователя[${email}]Авторизоваться`);
         return res.send({ id: user.id, type: user.type });
       } else {
         const password = Math.random().toString();
@@ -417,7 +417,7 @@ exports.facebookLogin = async (req, res) => {
       if(user) {
         req.session.user = user.id;
         req.session.type = user.type;
-        logger.info(`Facebook用户[${email}]登录`);
+        logger.info(`FacebookРегистрация пользователя[${email}]Авторизоваться`);
         return res.send({ id: user.id, type: user.type });
       } else {
         const password = Math.random().toString();
@@ -482,7 +482,7 @@ exports.githubLogin = async (req, res) => {
       if(user) {
         req.session.user = user.id;
         req.session.type = user.type;
-        logger.info(`Github用户[${email}]登录`);
+        logger.info(`GithubРегистрация пользователя[${email}]Авторизоваться`);
         return res.send({ id: user.id, type: user.type });
       } else {
         const password = Math.random().toString();
@@ -552,7 +552,7 @@ exports.twitterLogin = async (req, res) => {
     if(user) {
       req.session.user = user.id;
       req.session.type = user.type;
-      logger.info(`Twitter用户[${email}]登录`);
+      logger.info(`TwitterРегистрация пользователя[${email}]Авторизоваться`);
       return res.send({ id: user.id, type: user.type });
     } else {
       const password = Math.random().toString();
@@ -754,7 +754,7 @@ exports.sendCode = (req, res) => {
     const email = req.body.email.toString().toLowerCase();
     const ip = req.headers['x-real-ip'] || req.connection.remoteAddress;
     const session = req.sessionID;
-    return emailPlugin.sendCode(email, success.title || 'ss验证码', success.content || '欢迎新用户注册，\n您的验证码是：', {
+    return emailPlugin.sendCode(email, success.title || 'ssПроверочный код', success.content || 'Добро пожаловать на регистрацию новой учетной записи. \nВаш проверочный код:', {
       ip,
       session,
     });

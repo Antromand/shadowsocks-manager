@@ -100,7 +100,7 @@ const getUserFinishOrder = async userId => {
   orders = orders.map(order => {
     return {
       orderId: order.orderId,
-      type: '邀请奖励',
+      type: 'Приглашения Награды',
       refTime: order.refTime,
       createTime: order.createTime,
     };

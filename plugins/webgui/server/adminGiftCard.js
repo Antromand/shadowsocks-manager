@@ -15,7 +15,7 @@ exports.addGiftCard = async (req, resp) => {
     const batchNumber = await giftcard.generateGiftCard(count, orderId, comment);
     resp.send({ batchNumber: batchNumber });
   } catch (err) {
-    logger.error(`添加充值码失败：${err.toString()}`);
+    logger.error(`Не удалось добавить код пополнения：${err.toString()}`);
     resp.status(500).send(err.toString()).end();
   }
 };
@@ -27,7 +27,7 @@ exports.revokeBatch = async (req, resp) => {
       await giftcard.revokeBatch(batchNumber);
       resp.send('success');
     } catch (err) {
-      logger.error(`无法收回批次 ${batchNumber}：${err.toString()}`);
+      logger.error(`Невозможно отозвать партию ${batchNumber}：${err.toString()}`);
       resp.status(500).end();
     }
   } else {
@@ -39,7 +39,7 @@ exports.listBatch = async (req, res) => {
   try {
     res.send(await giftcard.listBatch());
   } catch (err) {
-    logger.error(`无法列出充值码：${err.toString()}`);
+    logger.error(`Невозможно перечислить коды пополнения：${err.toString()}`);
     res.status(500).end();
   }
 };
@@ -54,7 +54,7 @@ exports.getBatchDetails = async (req, resp) => {
       else
         resp.send(404).end();
     } catch (err) {
-      logger.error(`无法查询批次 ${batchNumber}：${err.toString()}`);
+      logger.error(`Невозможно запросить пакет ${batchNumber}：${err.toString()}`);
       resp.status(500).end();
     }
   } else {

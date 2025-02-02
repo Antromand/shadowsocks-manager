@@ -3,10 +3,10 @@ const app = angular.module('app');
 app.filter('prettyPrintBatchStatus', function () {
     return function (status) {
         const result = {
-            AVAILABLE: '可用',
-            USEDUP: '售罄',
-            REVOKED: '召回'
+            AVAILABLE: 'Доступный',
+            USEDUP: 'распроданный',
+            REVOKED: 'отзывать'
         };
-        return result[status] || '其它';
+        return result[status] || 'другой';
     };
 });
